@@ -69,10 +69,24 @@ def find_pairs(combos, arr):
     return pairs
 
 
+def num2str(num):
+    if num <= 10:
+        return str(num)
+    if num == 11:
+        return 'J'
+    if num == 12:
+        return 'Q'
+    if num == 13:
+        return 'K'
+
+def pairs_num_to_str(pairs):
+    pairs = [[[num2str(x) for x in line] for line in pair] for pair in pairs]
+    return pairs
 
 
 if __name__ == '__main__':
     arr = [6, 9, 13, 7, 11, 13, 6, 5, 3, 11]
     combos = find_combos(arr)
     pairs = find_pairs(combos, arr)
+    pairs = pairs_num_to_str(pairs)
     pprint(pairs)
