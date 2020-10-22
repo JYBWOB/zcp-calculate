@@ -83,6 +83,38 @@ def pairs_num_to_str(pairs):
     pairs = [[[num2str(x) for x in line] for line in pair] for pair in pairs]
     return pairs
 
+## trans arr
+def text2arr(text:str):
+    text = text.replace('J', '11')
+    text = text.replace('j', '11')
+    text = text.replace('Q', '12')
+    text = text.replace('q', '12')
+    text = text.replace('K', '13')
+    text = text.replace('k', '13')
+    if ',' in text:
+        arr = text.split(',')
+        arr = [int(x.strip()) for x in arr]
+        return arr
+    elif '，' in text:
+        arr = text.split('，')
+        arr = [int(x.strip()) for x in arr]
+        return arr
+    elif ' ' in text:
+        arr = text.split(' ')
+        arr = [int(x.strip()) for x in arr]
+        return arr
+
+
+def calculate_text(text):
+    arr = text2arr(text)
+    return calculate_arr(arr)
+
+
+def calculate_arr(arr):
+    combos = find_combos(arr)
+    pairs = find_pairs(combos, arr)
+    pairs = pairs_num_to_str(pairs)
+    return pairs
 
 if __name__ == '__main__':
     arr = [6, 9, 13, 7, 11, 13, 6, 5, 3, 11]
